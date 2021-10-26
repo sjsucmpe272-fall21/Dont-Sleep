@@ -9,7 +9,8 @@ If you have driven before, youâ€™ve been drowsy at the wheel at some point. Itâ€
 
 ### Abstract:
 
-We will be developing a solution using neural networks that can detect if the drive is drowsy or not. In real scenario, it can be used to then activate autonomous driving system to help prevent any unfortunate events.
+To tackle this problem, the current-generation cars can be installed with a system that detects if a drive is drowsy or not.
+We will be developing a solution using multi-layer neural network. In real scenario, it can be used to then activate autonomous driving system to help prevent any unfortunate events.
 
 ### Approach:
 The front-end part will contain taking in the video feed and feeding it to the model. The trained model will then help predict if the drive is drowsy or not.
