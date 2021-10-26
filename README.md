@@ -16,7 +16,7 @@ We will be developing a solution using multi-layer neural network. In real scena
 The front-end part will contain taking in the video feed and feeding it to the model. The trained model will then help predict if the drive is drowsy or not.
 
 ### Persona:
-Our target audience would be anyone who drives a 4-wheeler.
+Our target audience would be anyone who drives a car, truck or any other kind of vehicle.
 
 ### Dataset Link:
 [Drowsiness Data](http://www.cs.unc.edu/~abyrnes1/dataset.htm)
