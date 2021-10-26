@@ -1,4 +1,30 @@
 # Team-Project-27
+
+## Idea: Drowsiness Detection System
+### Introduction to problem statement:
+
+“1 in 25 adult drivers report that they have fallen asleep at the wheel in the past 30 days”
+
+If you have driven before, you’ve been drowsy at the wheel at some point. It’s not something we like to admit but it’s an important problem with serious consequences that needs to be addressed. 1 in 4 vehicle accidents are caused by drowsy driving and 1 in 25 adult drivers report that they have fallen asleep at the wheel in the past 30 days. The scariest part is that drowsy driving isn’t just falling asleep while driving. Drowsy driving can be as small as a brief state of unconsciousness when the driver is not paying full attention to the road. Drowsy driving results in over 71,000 injuries, 1,500 deaths, and $12.5 billion in monetary losses per year. 
+
+### Abstract:
+
+We will be developing a solution using neural networks that can detect if the drive is drowsy or not. In real scenario, it can be used to then activate autonomous driving system to help prevent any unfortunate events.
+
+### Approach:
+The front-end part will contain taking in the video feed and feeding it to the model. The trained model will then help predict if the drive is drowsy or not.
+
+### Persona:
+Our target audience would be anyone who drives a 4-wheeler.
+
+### Dataset Link:
+[Drowsiness Data](http://www.cs.unc.edu/~abyrnes1/dataset.htm)
+
+
+
+
+# Previous Ideas 
+
 ## Idea 1: Real Time Car Price Analyser
 ### 1. Introduction to the problem statement
 
