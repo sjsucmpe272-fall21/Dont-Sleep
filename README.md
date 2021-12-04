@@ -7,7 +7,7 @@
 - Run ``python manage.py makemigrations`` to create migrations based on changes made to models.
 - Run ``python manage.py migrate`` to apply the migrations created.
 - Run ``python manage.py runserver`` to start the server in ``localhost``.
-- Navigate to the URL in the terminal to use the tool.
+- Navigate to the URL mentioned in the terminal to use the tool.
 
 # Proposal
 ## Idea: Drowsiness Detection System
