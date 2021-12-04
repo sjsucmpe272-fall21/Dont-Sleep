@@ -9,7 +9,7 @@
 - Run ``python manage.py runserver`` to start the server in ``localhost``.
 - Navigate to the URL mentioned in the terminal to use the tool.
 <br>
-*Note: Make sure to put your Twilio authentication token in the send_sms method.*
+##### Note: Make sure to put your Twilio authentication token in the send_sms method.
 
 # Proposal
 ## Idea: Drowsiness Detection System
