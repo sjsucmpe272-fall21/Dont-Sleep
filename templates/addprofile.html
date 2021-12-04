@@ -1,0 +1,125 @@
+{% load static %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sleep Detection</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    {% block headblock %}
+    {% endblock %}
+
+  </head>
+  <body style="padding-top:10px;background-color: black;">
+    <nav class="navbar mynav" role="navigation" id="navbar">
+    			<div class="container">
+            <a class="navbar-brand btn-custom" href="{% url 'home' %}">
+              <span class='glyphicon glyphicon-home white'>
+               </span>
+            </a>
+    					<ul class="nav navbar-nav navbar-right">
+    						{% if user.is_authenticated %}
+                    <a href="{% url 'myapp:logout' %}"><button type="button" class="btn-custom-top">LogOut</button></a>
+    						{% else %}
+                      <a href="{% url 'myapp:signup' %}"><button type="button" class="btn-custom-top">Sign Up</button></a>
+
+    						{% endif %}
+
+    					</ul>
+    			</div>
+    		</nav>
+        {% block fullscreen %}
+        {% endblock %}
+        <div class="container mycontent container_3">
+          {% block content %}
+
+          <div class="container container_3">
+            <h1 >PLEASE COMPLETE YOUR PROFILE!</h1>
+
+              <form method="POST" class="form">
+                  {% csrf_token %}
+                  {% bootstrap_form form %}
+                  <input type="submit" value="Become a member" class="btn-custom-mem">
+                  <br><br><br>
+              </form>
+          </div>
+          {% endblock %}
+        </div>
+        <style media="screen">
+          .container_3{
+            background-color: #dfdedd;
+          }
+          .white, .white a {
+              color: #fff;
+              background-color: black;
+            }
+          .btn-custom {
+            background-color: black;
+            border-color: #CCCCCC;
+            color: #333333;
+          }
+          .btn-custom-top {
+          width: 140px;
+          height: 45px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          font-weight: 500;
+          color: #000;
+          background-color: #fff;
+          border: none;
+          border-radius: 45px;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease 0s;
+          cursor: pointer;
+          outline: none;
+          }
+
+        .btn-custom-top:hover {
+          background-color: gray;
+          box-shadow: 0px 15px 20px rgb(244,215,185);
+          color: #fff;
+          transform: translateY(-7px);
+        }
+
+        .btn-custom-mem {
+          width: 200px;
+          height: 45px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          font-weight: 500;
+          color: #000;
+          background-color: #fff;
+          border: none;
+          border-radius: 45px;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease 0s;
+          cursor: pointer;
+          outline: none;
+          }
+
+        .btn-custom-mem:hover {
+          background-color: gray;
+          box-shadow: 0px 15px 20px rgb(244,215,185);
+          color: #fff;
+          transform: translateY(-7px);
+        }
+        </style>
+  <canvas id="canvas"></canvas>
+
+  </body>
+  <!-- <script src="{% static "simplesocial/js/master.js"%}" type="text/javascript" ></script> -->
+</html>

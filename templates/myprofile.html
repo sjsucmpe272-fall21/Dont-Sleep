@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block headblock %}
+
+
+
+{% endblock %}
+
+{% block fullscreen %}
+
+<div class="container_3 jumbotron container">
+
+
+<h3 style="color: black;">Hi {{ name }}</h3><br>
+    <p style="color:black;font-size:18px;">Your skill analysis is as follows:<br>
+    No. of trips : <b>{{ trips }}</b><br>
+    No. of trips in which you got drowsy : <b>{{ sleeps }}</b><br>
+        Percentage of alert trips : <b>{{ accr }}</b><br></p>
+</div>
+
+<style media="screen">
+  .container_3{
+    background-color: gray;
+  }
+</style>
+
+
+{% endblock %}

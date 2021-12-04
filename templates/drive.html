@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="shortcut icon" href="#">
+</head>
+<body style="background-color: black;">
+
+    <div style="text-align:center;">
+        </br>
+<video style="text-align:center; margin-top: 100px;" id="video" width="320" height="240" autoplay></video>
+</br>
+<!--<button id="click-photo">Click Photo</button>-->
+<canvas style="text-align:center; margin-top: 100px;" hidden id="canvas" width="320" height="240"></canvas>
+<button  style="text-align:center; margin-top: 100px;" id="start-camera" type="button" class="btn-custom-top">Start Camera</button>
+
+
+</div>
+ <style media="screen">
+    .vertical-center {
+      margin:auto;
+  display:block;
+
+    }
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+          .container_3{
+            background-color: #dfdedd;
+          }
+          .white, .white a {
+              color: #fff;
+              background-color: black;
+            }
+          .btn-custom {
+            background-color: black;
+            border-color: #CCCCCC;
+            color: #333333;
+          }
+          .btn-custom-top {
+          width: 140px;
+          height: 45px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          font-weight: 500;
+          color: #000;
+          background-color: #fff;
+          border: none;
+          border-radius: 45px;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease 0s;
+          cursor: pointer;
+          outline: none;
+          }
+
+        .btn-custom-top:hover {
+          background-color: gray;
+          box-shadow: 0px 15px 20px rgb(244,215,185);
+          color: #fff;
+          transform: translateY(-7px);
+        }
+        </style>
+<script>
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          return navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+          window.alert("Browser does not support geolocation!");
+        }
+      }
+
+      async function showPosition(position) {
+
+        var config = { headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+                  'Accept':'*/*',
+                  'Accept-Encoding': 'gzip, deflate, br'
+                  }
+                     }
+         response = await axios.post("https://dontsleepapp.herokuapp.com/myapp/sendsms",
+                     { "latitude": position.coords.latitude,
+                     "longitude" : position.coords.longitude}  , config
+                  )
+      }
+
+      function showError(error) {
+        if(error.PERMISSION_DENIED){
+            return 0;
+        }
+      }
+
+
+    // define a handler
+    function doc_keyUp(e) {
+        // this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
+        if (e.ctrlKey && e.key === 'ArrowDown') {
+            javascript:window.close('','_parent','');
+        }}
+    // register the handler
+    document.addEventListener('keyup', doc_keyUp, false);
+
+
+    let camera_button = document.querySelector("#start-camera");
+    let video = document.querySelector("#video");
+    let canvas = document.querySelector("#canvas");
+
+    camera_button.addEventListener('click', async function() {
+   	    let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+	    video.srcObject = stream;
+});
+
+function playaudio() {
+  var audio = new Audio('../templates/file.mp3');
+  audio.play();
+}
+
+
+   function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+   }
+   async function get_frames() {
+      await sleep(5000);
+      var audio = new Audio('../../static/file.mp3');
+      for (;;) {
+         await sleep(90);
+
+         c = canvas.getContext('2d')
+         c.drawImage(video, 0, 0, canvas.width, canvas.height);
+         var imgData = c.getImageData(0, 0, 32, 32);
+
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+
+         var image_data_url = canvas.toDataURL("image/png");
+         image64 = image_data_url.replace(/^data:image\/(png|jpg);base64,/, "");
+
+        var config = { headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+                  'Accept':'*/*',
+                  'Accept-Encoding': 'gzip, deflate, br'
+                  }
+                     }
+
+         response = await axios.post("https://dontsleepapp.herokuapp.com/myapp/procframe",
+                     { "label" : image64}  , config
+                  )
+<!--         console.log("POST response: ",response)-->
+
+        response = await axios.get("https://dontsleepapp.herokuapp.com/myapp/status")
+<!--         console.log("GET response: ", response);-->
+
+
+        <!--0 for all good; continue-->
+        <!--1 for ring the alarm-->
+        <!--2 for stop the alarm-->
+        <!--10 for close the app after sending sms-->
+
+         if (response.data == 1) {
+          if (audio.duration > 0 && !audio.paused) {
+<!--            console.log("Status is 1; WAKE UP, audio already playing!!!");-->
+          }
+          else {
+<!--          console.log("Status is 1; WAKE UP!!!");-->
+          audio.play();
+          }
+        }
+
+         if (response.data == 0) {
+<!--          console.log("Status is 0; No Alarm.");-->
+          audio.pause();
+        }
+
+
+        if (response.data == 10){
+<!--        console.log("Closing the ")-->
+        alert("Emergency message has been sent to +14086607308 with your location co-ordinates and location name!");
+        getLocation()
+        break;
+        }
+
+
+   }}
+   get_frames();
+
+  </script>
+</body>
+</html>
