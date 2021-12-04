@@ -231,8 +231,8 @@ def send_sms(request):
     message_to_broadcast = (
         f"{profile[0].Name} is in DANGER!!! His latitude and longitude are: ({request.data['latitude']}, {request.data['longitude']}) - {curr_loc}")
 
-    TWILIO_ACCOUNT_SID = "AC484e144c28d7b6175deebb3811e8cc0c"
-    TWILIO_AUTH_TOKEN = "f810baa628932b84bea885f76e60aceb"
+    TWILIO_ACCOUNT_SID = ""
+    TWILIO_AUTH_TOKEN = ""
     TWILIO_NUMBER = "+13073129312"
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
