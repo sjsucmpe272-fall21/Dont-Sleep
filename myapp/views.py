@@ -1,20 +1,13 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
-from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from . import forms
 from . import models
 from scipy.spatial import distance as dist
-from imutils.video import FileVideoStream
-from imutils.video import VideoStream
 from imutils import face_utils
 from twilio.rest import Client
-import numpy as np
-import argparse
 import imutils
-import time
 import dlib
 import cv2
 import base64
@@ -35,9 +28,8 @@ COUNTER = 0
 TOTAL = 0
 SETS = 0
 CHECK = True
-# initialize dlib's face detector (HOG-based) and then create
+# initialize dlib's face detector and then create
 # the facial landmark predictor
-# print("[INFO] loading facial landmark predictor...")
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("static/shape_predictor_68_face_landmarks0.dat")
 
@@ -153,13 +145,6 @@ def processing():
 
         # average the eye aspect ratio together for both eyes
         ear = (leftEAR + rightEAR) / 2.0
-
-        # compute the convex hull for the left and right eye, then
-        # visualize each of the eyes
-        # leftEyeHull = cv2.convexHull(leftEye)
-        # rightEyeHull = cv2.convexHull(rightEye)
-        # cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
-        # cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
 
         # check to see if the eye aspect ratio is below the blink
         # threshold, and if so, increment the blink frame counter
