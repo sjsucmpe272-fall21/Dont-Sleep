@@ -1,5 +1,5 @@
 # [Team 27 : Don't Sleep](https://dontsleepapp.herokuapp.com/) 
-### Note: If accessing the the above url, the site only sends message to a particular number(which we verified on Twilio's website), since we implemented it using <b>Twilio trial</b> account which prohibits us from sending messages to an unverified number.
+### Note: If accessing the the above url, the site only sends message to a particular number(which we verified on Twilio's website), since we implemented it using Twilio trial account which prohibits us from sending messages to an unverified number.
 
 # How to run in your system
 - Clone the github repo in your system using ```git clone https://github.com/sjsucmpe272-fall21/Dont-Sleep.git```
