@@ -1,4 +1,5 @@
 # [Team 27 : Don't Sleep](https://dontsleepapp.herokuapp.com/) 
+### Note: If accessing the the above url, the site only sends message to a particular number(which we verified on Twilio's website), since we implemented it using <b>Twilio trial</b> account which prohibits us from sending messages to an unverified number.
 
 # How to run in your system
 - Clone the github repo in your system using ```git clone https://github.com/sjsucmpe272-fall21/Dont-Sleep.git```
@@ -9,6 +10,8 @@
 - Run ``python manage.py runserver`` to start the server in ``localhost``.
 - Navigate to the URL mentioned in the terminal to use the tool.
 ##### Note: Make sure to put your Twilio authentication token in the send_sms method.
+
+### Currently 
 
 # Proposal
 ## Idea: Drowsiness Detection System
